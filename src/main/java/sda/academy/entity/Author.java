@@ -14,8 +14,12 @@ public class Author {
     private int id;
     @Column (name = "name", nullable = false)
     private String name;
-    @ManyToMany(mappedBy = "authors")
-    private Set<Books> books = new HashSet<>();
+    @Column (name = "language", nullable = false)
+    private String language;
+    @Column(name = "Genres", nullable = false)
+    private String genres;
+    @ManyToMany(mappedBy = "authorSet")
+    private Set<Books> booksSet = new HashSet<>();
     public int getId() {
         return id;
     }
@@ -32,12 +36,28 @@ public class Author {
         this.name = name;
     }
 
-    public Set<Books> getBooks() {
-        return books;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setBooks(Set<Books> books) {
-        this.books = books;
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getGenres() {
+        return genres;
+    }
+
+    public void setGenres(String genres) {
+        this.genres = genres;
+    }
+
+    public Set<Books> getBooksSet() {
+        return booksSet;
+    }
+
+    public void setBooksSet(Set<Books> booksSet) {
+        this.booksSet = booksSet;
     }
 
     @Override
@@ -45,7 +65,9 @@ public class Author {
         return "Author{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", books=" + books +
+                ", language='" + language + '\'' +
+                ", genres='" + genres + '\'' +
+                ", books=" + booksSet +
                 '}';
     }
 }

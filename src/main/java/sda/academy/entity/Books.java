@@ -14,6 +14,16 @@ public class Books {
     @Column(name = "title", nullable = false)
     private String title;
 
+    @Column(name = "Genre", nullable = false)
+    private String genre;
+
+    @Column(name = "Prices", nullable = false)
+    private Double prices;
+
+    @ManyToOne
+    @JoinColumn(name = "CustomerID", referencedColumnName = "id", nullable = false)
+    private Customer customer;
+
     @ManyToMany
     @JoinTable(
             name = "book_author",
@@ -21,7 +31,7 @@ public class Books {
             inverseJoinColumns = @JoinColumn(name = "author_id")
 
     )
-    private Set<Author> author = new HashSet<>();
+    private Set<Author> authorSet = new HashSet<>();
 
     // Getters and setters
 
@@ -41,12 +51,38 @@ public class Books {
         return this.title = title;
     }
 
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public Double getPrices() {
+        return prices;
+    }
+
+    public void setPrices(Double prices) {
+        this.prices = prices;
+    }
+
+    public Set<Author> getAuthorSet() {
+        return authorSet;
+    }
+
+    public void setAuthorSet(Set<Author> authorSet) {
+        this.authorSet = authorSet;
+    }
+
     @Override
     public String toString() {
         return "Books{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", authors=" + author +
+                ", genre='" + genre + '\'' +
+                ", prices=" + prices +
+                ", author=" + authorSet +
                 '}';
     }
 }
