@@ -4,15 +4,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import sda.academy.config.DatabaseConfig;
-import sda.academy.entity.Books;
+import sda.academy.entity.Customer;
 
-public class BooksRepository {
+public class CustomerRepository {
+
     private SessionFactory sessionFactory = DatabaseConfig.getSessionFactory();
 
-    public void saveBooks(Books books) {
+    public void saveCustomer(Customer customer) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.persist(books);
+        session.persist(customer);
         transaction.commit();
     }
 }
