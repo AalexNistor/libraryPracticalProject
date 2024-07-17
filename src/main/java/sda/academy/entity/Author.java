@@ -12,11 +12,11 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
-    @Column (name = "name", nullable = false)
+    @Column (name = "name", unique = true)
     private String name;
-    @Column (name = "language", nullable = false)
+    @Column (name = "language")
     private String language;
-    @Column(name = "Genres", nullable = false)
+    @Column(name = "Genres")
     private String genres;
     @ManyToMany(mappedBy = "authorSet")
     private Set<Books> booksSet = new HashSet<>();
@@ -60,14 +60,4 @@ public class Author {
         this.booksSet = booksSet;
     }
 
-    @Override
-    public String toString() {
-        return "Author{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", language='" + language + '\'' +
-                ", genres='" + genres + '\'' +
-                ", books=" + booksSet +
-                '}';
-    }
 }

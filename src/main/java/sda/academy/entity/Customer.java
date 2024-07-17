@@ -12,13 +12,13 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
-    @Column(name = "Name", nullable = false)
+    @Column(name = "Name")
     private String name;
 
-    @Column(name = "Adress", nullable = false)
+    @Column(name = "Adress")
     private String address;
 
-    @Column(name = "Email", nullable = false, unique = true)
+    @Column(name = "Email", unique = true)
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer", orphanRemoval = true)
@@ -64,14 +64,4 @@ public class Customer {
         this.books = books;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                ", books=" + books +
-                '}';
-    }
 }

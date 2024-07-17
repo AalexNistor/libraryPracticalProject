@@ -11,7 +11,7 @@ public class BooksDTO {
     private String title;
     private String genre;
     private Double prices;
-    private Set<AuthorDTO> authorDTOSet;
+    private Set<String> authorsName = new HashSet<>();
 
     public int getId() {
         return id;
@@ -45,12 +45,12 @@ public class BooksDTO {
         this.prices = prices;
     }
 
-    public Set<AuthorDTO> getAuthorDTOSet() {
-        return authorDTOSet;
+    public Set<String> getAuthorsName() {
+        return authorsName;
     }
 
-    public void setAuthorDTOSet(Set<AuthorDTO> authorDTOSet) {
-        this.authorDTOSet = authorDTOSet;
+    public void setAuthorsName(Set<String> authorsName) {
+        this.authorsName = authorsName;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class BooksDTO {
                 ", title='" + title + '\'' +
                 ", genre='" + genre + '\'' +
                 ", prices=" + prices +
-                ", authorDTOSet=" + authorDTOSet +
+                ", authorsName=" + authorsName +
                 '}';
     }
 }

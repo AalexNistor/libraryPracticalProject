@@ -10,7 +10,7 @@ public class AuthorDTO {
     private String name;
     private String language;
     private String genres;
-    private Set<BooksDTO> booksDTOSet;
+    private Set<BooksDTO> booksDTOSet = new HashSet<>();
 
     public int getId() {
         return id;

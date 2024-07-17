@@ -15,4 +15,9 @@ public class AuthorRepository {
         session.persist(author);
         transaction.commit();
     }
+
+    public Author findAuthorByName(String name) {
+        Session session = sessionFactory.openSession();
+        return session.get(Author.class, name);
+    }
 }

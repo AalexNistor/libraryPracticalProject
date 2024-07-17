@@ -16,4 +16,8 @@ public class AuthorService {
         Author author = MapperUtil.convertAuthorDtoToEntity(authorDTO);
         authorRepository.saveAuthor(author);
     }
+
+    public Author findAuthorByName(String name) {
+        return authorRepository.findAuthorByName(name);
+    }
 }

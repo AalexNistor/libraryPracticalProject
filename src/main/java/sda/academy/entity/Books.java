@@ -11,17 +11,17 @@ public class Books {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
-    @Column(name = "title", nullable = false)
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "Genre", nullable = false)
+    @Column(name = "Genre")
     private String genre;
 
-    @Column(name = "Prices", nullable = false)
+    @Column(name = "Prices")
     private Double prices;
 
     @ManyToOne
-    @JoinColumn(name = "CustomerID", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "CustomerID", referencedColumnName = "id")
     private Customer customer;
 
     @ManyToMany
@@ -75,14 +75,4 @@ public class Books {
         this.authorSet = authorSet;
     }
 
-    @Override
-    public String toString() {
-        return "Books{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", genre='" + genre + '\'' +
-                ", prices=" + prices +
-                ", author=" + authorSet +
-                '}';
-    }
 }

@@ -6,6 +6,7 @@ import sda.academy.dto.CustomerDTO;
 import sda.academy.entity.Author;
 import sda.academy.entity.Books;
 import sda.academy.entity.Customer;
+import sda.academy.service.AuthorService;
 
 
 import java.util.HashSet;
@@ -78,25 +79,26 @@ public class MapperUtil {
         author.setLanguage(authorDTO.getLanguage());
         Set<BooksDTO> booksDTOSet = authorDTO.getBooksDTOSet();
         Set<Books> booksSet = new HashSet<>();
-        for(BooksDTO booksDTO : booksDTOSet) {
-            Books books = convertBooksDtoToEntity(booksDTO);
-            booksSet.add(books);
-        }
+//        for(BooksDTO booksDTO : booksDTOSet) {
+//            Books books = convertBooksDtoToEntity(booksDTO);
+//            booksSet.add(books);
+//        }
         author.setBooksSet(booksSet);
         return author;
     }
 
-        public static Books convertBooksDtoToEntity(BooksDTO booksDTO) {
+        public static Books convertBooksDtoToEntity(BooksDTO booksDTO, AuthorService authorService) {
         Books books = new Books();
         books.setId(booksDTO.getId());
         books.setTitle(booksDTO.getTitle());
         books.setGenre(booksDTO.getGenre());
         books.setPrices(books.getPrices());
-        Set<AuthorDTO> authorDTOSet = booksDTO.getAuthorDTOSet();
+        Set<String> authorNames = booksDTO.getAuthorsName();
         Set<Author> authorSet = new HashSet<>();
-        for (AuthorDTO authorDTO : authorDTOSet) {
-            Author author = convertAuthorDtoToEntity(authorDTO);
-            authorSet.add(author);
+        for (String name : authorNames) {
+            Author author1 = authorService.findAuthorByName(name);
+            authorSet.add(author1);
+
         }
         books.setAuthorSet(authorSet);
         return books;
