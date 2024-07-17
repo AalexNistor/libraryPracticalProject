@@ -58,18 +58,18 @@ public class MapperUtil {
 //        return authorDTO;
 //    }
 //
-//    public static CustomerDTO convertCustomerEntityToDto(Customer customer) {
-//        CustomerDTO customerDTO = new CustomerDTO();
-//        customerDTO.setId(customer.getId());
-//        customerDTO.setName(customer.getName());
-//        customerDTO.setAddress(customer.getAddress());
-//        customerDTO.setEmail(customer.getEmail());
-//        Set<BooksDTO> booksDTOSet = customer.getBooks().stream()
-//                .map(MapperUtil::convertBooksEntityToDtoWithoutAuthor)
-//                .collect(Collectors.toSet());
-//        customerDTO.setBooksDTOSet(booksDTOSet);
-//        return customerDTO;
-//    }
+    public static CustomerDTO convertCustomerEntityToDto(Customer customer) {
+        CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setId(customer.getId());
+        customerDTO.setName(customer.getName());
+        customerDTO.setAddress(customer.getAddress());
+        customerDTO.setEmail(customer.getEmail());
+        Set<BooksDTO> booksDTOSet = customer.getBooks().stream()
+                .map(MapperUtil::convertBooksEntityToDtoWithoutAuthor)
+                .collect(Collectors.toSet());
+        customerDTO.setBooksDTOSet(booksDTOSet);
+        return customerDTO;
+    }
 
     public static Author convertAuthorDtoToEntity(AuthorDTO authorDTO) {
         Author author = new Author();
@@ -102,6 +102,14 @@ public class MapperUtil {
         }
         books.setAuthorSet(authorSet);
         return books;
+    }
+
+    public static Customer convertCustomerDtoToEntity(CustomerDTO customerDTO){
+        Customer customer = new Customer();
+        customer.setId(customerDTO.getId());
+        customer.setAddress(customerDTO.getAddress());
+        customer.setEmail(customerDTO.getEmail());
+        return customer;
     }
 
 
