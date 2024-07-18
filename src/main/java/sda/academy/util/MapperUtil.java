@@ -92,7 +92,7 @@ public class MapperUtil {
         books.setId(booksDTO.getId());
         books.setTitle(booksDTO.getTitle());
         books.setGenre(booksDTO.getGenre());
-        books.setPrices(books.getPrices());
+        books.setPrices(booksDTO.getPrices());
         Set<String> authorNames = booksDTO.getAuthorsName();
         Set<Author> authorSet = new HashSet<>();
         for (String name : authorNames) {
@@ -107,6 +107,7 @@ public class MapperUtil {
     public static Customer convertCustomerDtoToEntity(CustomerDTO customerDTO){
         Customer customer = new Customer();
         customer.setId(customerDTO.getId());
+        customer.setName(customerDTO.getName());
         customer.setAddress(customerDTO.getAddress());
         customer.setEmail(customerDTO.getEmail());
         return customer;

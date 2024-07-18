@@ -23,12 +23,14 @@ public class UserInterface {
         this.customerService = new CustomerService();
     }
 
-    public static int menuOption (Scanner scanner) {
+    public static void menuOption (Scanner scanner) {
+        int menuOption = -1;
+        while(menuOption != 4){
         System.out.println("1. Add author");
         System.out.println("2. Add book");
         System.out.println("3. Add customer");
         System.out.println("4. Exit");
-        int menuOption = scanner.nextInt();
+        menuOption = scanner.nextInt();
 //        if(menuOption == 1){
 //            UserInterface user = new UserInterface();
 //            user.addAuthor(scanner);
@@ -42,9 +44,9 @@ public class UserInterface {
             case 2:
                 user.addBook(scanner);
                 break;
-//            case 3:
-//                user.addCustomer(scanner);
-//                break;
+            case 3:
+                user.addCustomer(scanner);
+                break;
             case 4:
                 System.out.println("Exit");
                 System.exit(0);
@@ -53,7 +55,7 @@ public class UserInterface {
                 System.out.println("Invalid option.");
                 break;
         }
-        return menuOption;
+        }
     }
 
     public void addAuthor(Scanner scanner) {
@@ -83,8 +85,17 @@ public class UserInterface {
         booksDTO.setTitle(title);
         booksDTO.setGenre(genre);
         booksDTO.setPrices(price);
+        System.out.println("Add author: ");
         Set<String> authorSet = new HashSet<>();
-        authorSet.add("1");
+        while(true) {
+        String authorName = scanner.next();
+        if (authorName.equals("4")){
+            break;
+        } else {
+            authorSet.add(authorName);
+        }
+        System.out.println("Add another author or press 4 to exit");
+        }
         booksDTO.setAuthorsName(authorSet);
         booksService.saveBooks(booksDTO);
 
@@ -102,6 +113,10 @@ public class UserInterface {
         customerDTO.setAddress(address);
         customerDTO.setEmail(email);
         customerService.saveCustomer(customerDTO);
+    }
+
+    public void buyBook(Scanner scanner) {
+
     }
 
 }
